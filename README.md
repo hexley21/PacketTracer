@@ -6,6 +6,7 @@
 
 - [About](#about)
   - [Modes](#modes)
+- [VLAN](#vlan)
 - [SSH](#ssh)
 - [Device commands](#device-commands)
   - [Network commands](#network-commands)
@@ -75,6 +76,28 @@ Here is a list of modes and entering guide, in which you have to launch your spe
 - `enable`
 - `configure terminal`
 - `line vty 0 15`
+
+## VLAN
+
+1. Create Vlan and assign name (config)
+    - `vlan {number}`
+    - `name {vlan-name}`
+
+2. Adding interfaces to Vlan
+    - `interface {interface}{port}`
+    - `switchport mode access`
+    - `switchport access vlan {number}`
+
+3. Activating "Trunk Mode" for external interfaces
+    - `interface {ext_interface}{port}`
+    - `switchport mode trunk`
+    > Router - Switch connection interface
+4. Create subinterfaces on the router and point them
+    - `interface {interface}{port}.{vlan_num}`
+    - `encapsulation dot1Q {vlan_num}`
+    - `ip address {ip} {subnet_mask}`
+    > IP of the router to which we will assign this interface
+    - `no shut`
 
 ## SSH
 
