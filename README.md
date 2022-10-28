@@ -6,6 +6,7 @@
 
 - [About](#about)
   - [Modes](#modes)
+- [SSH](#ssh)
 - [Device commands](#device-commands)
   - [Network commands](#network-commands)
   - [Basic configuration](#basic-configuration)
@@ -74,6 +75,35 @@ Here is a list of modes and entering guide, in which you have to launch your spe
 - `enable`
 - `configure terminal`
 - `line vty 0 15`
+
+## SSH
+
+Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed connection to the device.
+
+### SSH Configuration (config)
+
+1. IP domain configuration
+    - `ip domain-name {your.link}`
+2. RSA key pair generation
+    - `crypto key generate rsa`
+3. User authentication configuration
+    - `username {name} secret {password}`
+4. VTY lines configuration
+    - `line vty 0 15`
+    - `transport input ssh`
+    - `login local`
+    - `exit`
+5. Enable SSH ver. 2
+    - `ip ssh version 2`
+    - `exit`
+
+#### See SSH configuration (exec)
+
+- `show ip ssh`
+
+#### Delete RSA key
+
+- `crypto key zeroize rsa`
 
 ## Device commands
 
