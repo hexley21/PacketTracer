@@ -8,6 +8,7 @@
   - [Modes](#modes)
 - [VLAN](#vlan)
 - [SSH](#ssh)
+- [Routing](#routing)
 - [Device commands](#device-commands)
   - [Network commands](#network-commands)
   - [Basic configuration](#basic-configuration)
@@ -127,6 +128,16 @@ Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed
 #### Delete RSA key
 
 - `crypto key zeroize rsa`
+
+## Routing
+
+|              |RIPv1 |RIPv2 |IGRP  |EIGRP  |OSPF   |IS-IS  |
+|--------------|------|------|------|-------|-------|-------|
+|Speed Coverage|Slow  |Slow  |Slow  |Fast   |Fast   |Fast   |
+|Scalability   |Small |Small |Small |Large  |Large  |Large  |
+|Use of VLSM   |No    |Yes   |No    |Yes    |Yes    |Yes    |
+|Resource Usage|Low   |Low   |Low   |Medium |High   |High   |
+|Implementation|Simple|Simple|Simple|Complex|Complex|Complex|
 
 ## Device commands
 
