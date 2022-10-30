@@ -151,6 +151,14 @@ Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed
 
 - `show ip interface brief`
 
+#### Verify ip routes (exec)
+
+- `show ip route`
+
+    or
+
+- `show ipv6 route`
+
 ### Basic configuration
 
 #### Show running config (exec)
@@ -180,6 +188,14 @@ Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed
 
 - `show mac address-table (dynamic/static/NONE)`
 
+#### Display system hardware and software status (exec)
+
+- `show version`
+
+#### Display history of command entered (exec)
+
+- `show history`
+
 #### Clear dynamic mac address table (exec)
 
 - `clear mac address-table dynamic`
@@ -188,13 +204,22 @@ Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed
 
 - `hostname {name}`
 
-#### Enable Password (config)
+#### Enable secret (config)
 
 - `enable secret {password}`
+    > Prefered way
+
+#### Enable password (config)
+
+- `enable password {password}`
 
 #### Enable Password-Encryption (config)
 
 - `service password-encryption`
+
+#### Set password min-length (config)
+
+- `security passwords min-length`
 
 #### Banner (config)
 
@@ -204,6 +229,49 @@ Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed
 
 - `{message}#`
 
+#### Description (config-if)
+
+- `description {text}`
+
 #### Restrict unwanted DNS lookup (config)
 
 - `no ip domain-lookup`
+
+### Switch
+
+### Router
+
+#### Block line logins after unsuccessful attempts (config)
+
+- `login block-for {seconds} attempts {num_of_tries} within {second}`
+
+#### Set clock (config)
+
+- `clock set 15:20:00 12 Nov 2020`
+
+#### Enable ipv6 routing (config)
+
+- `ipv6 unicast-routing`
+
+#### Enable Duplex (config-if)
+
+> Full-duplex communication increases bandwidth efficiency by allowing both ends of a connection to transmit and receive data simultaneously.
+
+- `duplex full`
+- `speed {val}` (usually: 100)
+
+#### Auto-MDIX (config-if)
+
+> With auto-MDIX enabled, either type of cable can be used to connect to other devices, and the interface automatically adjusts to communicate successfully.
+
+- `mdix auto`
+
+See mdix state
+
+- `show controllers ethernet-controller {interface}{port} phy | include MDIX`
+
+### Lines (vty/con)
+
+#### Disconect after inactivity
+
+- `exec-timeout {minutes} {seconds}`
