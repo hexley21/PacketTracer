@@ -9,6 +9,8 @@
 - [VLAN](#vlan)
 - [SSH](#ssh)
 - [Routing](#routing)
+  - [Static](#static-routing)
+    - [Summary route](#summary-route-calculation)
 - [Device commands](#device-commands)
   - [Network commands](#network-commands)
   - [Basic configuration](#basic-configuration)
@@ -139,6 +141,35 @@ Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed
 |Use of VLSM   |No    |Yes   |No    |Yes    |Yes    |Yes    |
 |Resource Usage|Low   |Low   |Low   |Medium |High   |High   |
 |Implementation|Simple|Simple|Simple|Complex|Complex|Complex|
+
+### Static Routing
+
+- `ip route {destination_ip} {destination_subnet} {route - [ip/interface]}`
+
+    Default route
+
+- `ip route 0.0.0.0 0.0.0.0 {route - [ip/interface]}`
+
+#### Summary route calculation
+
+Example:
+
+`172.16`.2.0 / 26\
+`172.16`.1.128 / 25\
+`172.16`.1.0 / 25\
+`172.16`.0.0 / 24
+
+all these adresses have `172.16` in common
+
+`172.16.000000`10.00000000\
+`172.16.000000`01.10000000\
+`172.16.000000`01.00000000\
+`172.16.000000`00.00000000
+
+all these adresses share `172.16.000000`, so we get ip summary of:\
+`172.16.0.0 / 22`
+
+which gives us a range of `172.16.0.0` to `172.16.3.255`
 
 ## Device commands
 
