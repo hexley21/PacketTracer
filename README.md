@@ -7,13 +7,15 @@
 - [PacketTracer](#packettracer)
   - [About](#about)
     - [Before moving on](#before-moving-on)
-      - [__Modes__](#modes)
+      - [Modes](#modes)
   - [VLAN](#vlan)
   - [SSH](#ssh)
     - [SSH Configuration (config)](#ssh-configuration-config)
   - [Routing](#routing)
     - [Static Routing](#static-routing)
       - [Summary route calculation](#summary-route-calculation)
+  - [IPv6](#ipv6)
+    - [Configure IPv6](#configure-ipv6)
   - [Device commands](#device-commands)
     - [Network commands](#network-commands)
     - [Basic configuration](#basic-configuration)
@@ -36,7 +38,7 @@ This is a short summary of commands and knowledge gathered from cisco's netcad c
 
 Before moving on, read this paragraph, this will help you to understand this manual better.
 
-#### __Modes__
+#### Modes
 
 Each command has to be launched in specific "scope", in this pagragraph, you will see all these modes and commands to enable them.
 
@@ -174,6 +176,22 @@ all these adresses share `172.16.000000`, so we get ip summary of:\
 
 which gives us a range of `172.16.0.0` to `172.16.3.255`
 
+## IPv6
+
+### Configure IPv6
+
+1. Enable ipv6 routing (config)
+
+    - `ipv6 unicast-routing`
+
+2. Set ipv6 address
+
+    - `ipv6 address {address}`
+
+3. Set link-local to ipv6
+
+    - `ipv6 address {address} link-local`
+
 ## Device commands
 
 ### Network commands
@@ -283,10 +301,6 @@ Block line logins after unsuccessful attempts (config)
 Set clock (config)
 
 - `clock set 15:20:00 12 Nov 2020`
-
-Enable ipv6 routing (config)
-
-- `ipv6 unicast-routing`
 
 Enable Duplex (config-if)
 
