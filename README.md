@@ -11,16 +11,11 @@
   - [VLAN](#vlan)
   - [SSH](#ssh)
     - [SSH Configuration (config)](#ssh-configuration-config)
-      - [See SSH configuration (exec)](#see-ssh-configuration-exec)
-      - [Delete RSA key](#delete-rsa-key)
   - [Routing](#routing)
     - [Static Routing](#static-routing)
       - [Summary route calculation](#summary-route-calculation)
   - [Device commands](#device-commands)
     - [Network commands](#network-commands)
-      - [Show all VLANs (exec)](#show-all-vlans-exec)
-      - [Show all interfaces (exec)](#show-all-interfaces-exec)
-      - [Verify ip routes (exec)](#verify-ip-routes-exec)
     - [Basic configuration](#basic-configuration)
     - [Switch](#switch)
     - [Router](#router)
@@ -132,11 +127,11 @@ Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed
     - `ip ssh version 2`
     - `exit`
 
-#### See SSH configuration (exec)
+See SSH configuration (exec)
 
 - `show ip ssh`
 
-#### Delete RSA key
+Delete RSA key
 
 - `crypto key zeroize rsa`
 
@@ -183,15 +178,15 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
 
 ### Network commands
 
-#### Show all VLANs (exec)
+Show all VLANs (exec)
 
 - `show vlan brief`
 
-#### Show all interfaces (exec)
+Show all interfaces (exec)
 
 - `show ip interface brief`
 
-#### Verify ip routes (exec)
+Verify ip routes (exec)
 
 - `show ip route`
 
