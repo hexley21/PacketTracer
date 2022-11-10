@@ -15,6 +15,7 @@
     - [Static Routing](#static-routing)
       - [Summary route calculation](#summary-route-calculation)
     - [EIGRP](#eigrp)
+    - [OSPF](#ospf)
   - [IPv6](#ipv6)
     - [Configure IPv6](#configure-ipv6)
   - [Port Security](#port-security)
@@ -194,6 +195,15 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
 
 1. `router eigrp {number}`
 2. `redistribute static`
+
+### OSPF
+
+> Router (conf)
+>
+> Write these to each router and network
+
+1. `route ospf 1`
+2. `network {ip_address} {wildcard_mask} area {number}`
 
 ## IPv6
 
