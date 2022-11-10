@@ -16,6 +16,7 @@
       - [Summary route calculation](#summary-route-calculation)
   - [IPv6](#ipv6)
     - [Configure IPv6](#configure-ipv6)
+  - [Port Security](#port-security)
   - [Device commands](#device-commands)
     - [Network commands](#network-commands)
     - [Basic configuration](#basic-configuration)
@@ -191,6 +192,18 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
 3. Set link-local to ipv6
 
     - `ipv6 address {address} link-local`
+
+## Port Security
+
+> (conf)
+
+1. `switchport port-security mac-address {address}`
+
+2. `switchport port-security maximum {0-15}`
+
+3. `switchport port-security sticky`
+
+4. `switchport port-security violation {shutdown/restrict/protect}`
 
 ## Device commands
 
