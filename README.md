@@ -200,10 +200,20 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
 
 > Router (conf)
 >
-> Write these to each router and network
+> Write these commands to each router and network
 
 1. `route ospf 1`
 2. `network {ip_address} {wildcard_mask} area {number}`
+
+### RIP
+
+> Router (conf)
+>
+> Write these commands to each router and network
+
+1. `route rip`
+2. `version 2`
+3. `network {neighbor_router_ip_address}`
 
 ## IPv6
 
