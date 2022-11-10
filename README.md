@@ -16,6 +16,7 @@
       - [Summary route calculation](#summary-route-calculation)
     - [EIGRP](#eigrp)
     - [OSPF](#ospf)
+  - [DHCP](#dhcp)
   - [IPv6](#ipv6)
     - [Configure IPv6](#configure-ipv6)
   - [Port Security](#port-security)
@@ -214,6 +215,42 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
 1. `route rip`
 2. `version 2`
 3. `network {neighbor_router_ip_address}`
+
+## DHCP
+
+> Router (conf)
+
+1. `ip dhcp pool {name}`
+2. `default-router {target_ip}`
+3. `network {ip-start-point} {subnet-mask}`
+    > network 192.168.100.0 255.255.255.0
+4. `dns-server {dns_address}`
+    > dns-server 8.8.8.8
+
+Exclude IPs
+
+1. `ip dhcp excluded -address {ip-start-point} {ip-end-point}`
+
+Server
+
+> Desktop -> IP Configuration: Static \
+> and assign all needed IPs
+>
+> services -> DHCP
+>
+> pool name: `{name}` \
+> default geteway: `{target}` \
+> DNS server: `{address}` \
+> start IP Address : `ip_start_point` \
+> subnet mask: `{subnet}`
+> maximum numbers of Users: `{0 - 255}`
+>
+> __Save__
+>
+> for each dhcp (if exists), write these commands in router
+>
+> - `interface {interface} {port}`
+> - `ip helper-address {dhcp_server_ip`
 
 ## IPv6
 
