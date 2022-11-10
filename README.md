@@ -14,6 +14,7 @@
   - [Routing](#routing)
     - [Static Routing](#static-routing)
       - [Summary route calculation](#summary-route-calculation)
+    - [EIGRP](#eigrp)
   - [IPv6](#ipv6)
     - [Configure IPv6](#configure-ipv6)
   - [Port Security](#port-security)
@@ -176,6 +177,23 @@ all these adresses share `172.16.000000`, so we get ip summary of:\
 `172.16.0.0 / 22`
 
 which gives us a range of `172.16.0.0` to `172.16.3.255`
+
+### EIGRP
+
+1. `router eigrp {number}`
+2. `no auto-summary`
+3. `network {ip_address} {wildcard}`
+
+#### Metric
+
+1. `router eigrp 1`
+2. `metric weights tos`
+3. `metric weights 0 0 0 0 0 0`
+
+> In case ISP has static routing, write these commands to other routers
+
+1. `router eigrp {number}`
+2. `redistribute static`
 
 ## IPv6
 
