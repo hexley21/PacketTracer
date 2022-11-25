@@ -120,6 +120,10 @@ Add native VLAN to trunk port (config)
 - `switchport mode trunk`
 - `switchport trunk native vlan {number}`
 
+Enable no negotiate
+
+- `switchport nonegotiate`
+
 Enable voice in VLAN (config-if)
 
 - `mls qos trust cos`
