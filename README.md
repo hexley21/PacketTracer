@@ -291,15 +291,20 @@ Server
 
 ## Port Security
 
-> (conf)
+Configure port-security(config-if)
 
-1. `switchport port-security mac-address {address}`
+Give mac address to port
 
-2. `switchport port-security maximum {0-15}`
+- `switchport port-security mac-address {address/sticky}`
+    > sticky gives mac-addresses dynamicly
 
-3. `switchport port-security sticky`
+Restrict maximum amount of mac addresses given
 
-4. `switchport port-security violation {shutdown/restrict/protect}`
+- `switchport port-security maximum {0-15}`
+
+Add action on security violation
+
+- `switchport port-security violation {shutdown/restrict/protect}`
 
 ## Device commands
 
