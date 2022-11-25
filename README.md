@@ -15,7 +15,9 @@
     - [Static Routing](#static-routing)
       - [Summary route calculation](#summary-route-calculation)
     - [EIGRP](#eigrp)
+      - [Metric](#metric)
     - [OSPF](#ospf)
+    - [RIP](#rip)
   - [DHCP](#dhcp)
   - [IPv6](#ipv6)
     - [Configure IPv6](#configure-ipv6)
@@ -111,6 +113,11 @@ Console VTY (config-vty)
     - `ip address {ip} {subnet_mask}`
     > IP of the router to which we will assign this interface
     - `no shut`
+
+Enable voice in VLAN (config-if)
+
+- `mls qos trust cos`
+- `switchport voice vlan {number}`
 
 ## SSH
 
