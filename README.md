@@ -120,7 +120,11 @@ Add native VLAN to trunk port (config)
 - `switchport mode trunk`
 - `switchport trunk native vlan {number}`
 
-Enable no negotiate
+Enable Dynamic trunking protocol {DTP} (config-if)
+
+- `switchport mode dynamic {desirable/auto}`
+
+Enable no negotiate (config-if)
 
 - `switchport nonegotiate`
 
