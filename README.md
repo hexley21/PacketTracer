@@ -114,6 +114,12 @@ Console VTY (config-vty)
     > IP of the router to which we will assign this interface
     - `no shut`
 
+Add native VLAN to trunk port (config)
+
+- `inteface {exit_interface}{port}`
+- `switchport mode trunk`
+- `switchport trunk native vlan {number}`
+
 Enable voice in VLAN (config-if)
 
 - `mls qos trust cos`
