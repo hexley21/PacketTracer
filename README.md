@@ -221,11 +221,19 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
 ### OSPF
 
 > Router (conf)
->
-> Write these commands to each router and network
 
-1. `route ospf 1`
-2. `network {ip_address} {wildcard_mask} area {number}`
+1. Configure router IDs. (config)
+   - `route ospf {num}`
+   - `router-id {process_id}`
+2. Configure Networks for OSPF Routing
+   - Configure networks using wildcard masks. (config-router)
+     - `network {ip_address} {wildcard_mask} area {number}`
+   - Configure OSPF routing on router interfaces. (config)
+      - `interface {interface}{port}`
+      - `ip ospf {process-id} area {area-id}`
+3. Configure Passive Interfaces (config)
+    - `router ospf {num}`
+    - `passive-interface {outside-interface}{port}`
 
 ### RIP
 
