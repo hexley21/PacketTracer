@@ -225,6 +225,21 @@ Display EIGRP routing protocol parameters
 
 - `show ip protocols`
 
+#### IPV6
+
+> config
+
+1. Enable IPv6 routing.
+    - `ipv6 unicast-routing`
+2. Enable EIGRP for IPv6 routing.
+    - `ipv6 router eigrp {process-num}`
+    - `no shutdown`
+3. Assign a router ID
+    - `eigrp router-id {A.B.C.D}`
+4. Configure EIGRP for IPv6 on each interface
+    - `interface {interface} {port}`
+    - `ipv6 eigrp {process-num}`
+
 #### Metric
 
 1. `router eigrp 1`
