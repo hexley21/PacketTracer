@@ -222,7 +222,7 @@ Examine neighbors
 
 - `show ip eigrp neighbors`
 
-Display EIGRP routing protocol parameters
+Display routing protocol parameters
 
 - `show ip protocols`
 
@@ -265,17 +265,30 @@ Hello interval
 > Router (conf)
 
 1. Configure router IDs. (config)
-   - `route ospf {num}`
-   - `router-id {process_id}`
+    - `route ospf {num}`
+    - `router-id {process_id}`
 2. Configure Networks for OSPF Routing
-   - Configure networks using wildcard masks. (config-router)
-     - `network {ip_address} {wildcard_mask} area {number}`
-   - Configure OSPF routing on router interfaces. (config)
-      - `interface {interface}{port}`
-      - `ip ospf {process-id} area {area-id}`
+    - Configure networks using wildcard masks. (config-router)
+    - `network {ip_address} {wildcard_mask} area {number}`
+
+    Or Configure OSPF routing on router interfaces. (config)
+
+    - `interface {interface}{port}`
+    - `ip ospf {process-id} area {area-id}`
 3. Configure Passive Interfaces (config)
     - `router ospf {num}`
     - `passive-interface {outside-interface}{port}`
+
+Propagate the route in OSPF.
+
+- `ip route {ip} {mask} {interface}{port}`
+- `router ospf 1`
+- `default-information originate`
+
+Show ip routes learned through OSPF.
+
+- `show ip route ospf`
+- `show ip ospf neighbor`
 
 ### RIP
 
