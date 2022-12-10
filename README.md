@@ -226,6 +226,14 @@ Display EIGRP routing protocol parameters
 
 - `show ip protocols`
 
+Propagate the default route in EIGRP. (eigrp)
+
+- `redistribute static`
+
+Hello interval
+
+- `ip hello-interval eigrp {process-num} {interval}`
+
 #### IPV6-eigrp
 
 > config
