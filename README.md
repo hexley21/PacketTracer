@@ -203,9 +203,27 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
 
 ### EIGRP
 
-1. `router eigrp {number}`
-2. `no auto-summary`
-3. `network {ip_address} {wildcard}`
+> (config)
+
+1. Enable the EIGRP routing process.
+    - `router eigrp {process-num}`
+2. Disable automatic summarization.
+    - `no auto-summary`
+3. Assign a router ID.
+    - `eigrp router-id {A.B.C.D}`
+    > eigrp router-id 1.1.1.1
+4. Advertise directly connected networks.
+    - `network {ip_address} {wildcard}`
+5. Configure passive interfaces.
+    - `passive-interface {interface}{port}`
+
+Examine neighbors
+
+- `show ip eigrp neighbors`
+
+Display EIGRP routing protocol parameters
+
+- `show ip protocols`
 
 #### Metric
 
