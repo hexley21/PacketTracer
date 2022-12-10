@@ -15,6 +15,7 @@
     - [Static Routing](#static-routing)
       - [Summary route calculation](#summary-route-calculation)
     - [EIGRP](#eigrp)
+      - [IPV6](#ipv6-eigrp)
       - [Metric](#metric)
     - [OSPF](#ospf)
     - [RIP](#rip)
@@ -225,7 +226,7 @@ Display EIGRP routing protocol parameters
 
 - `show ip protocols`
 
-#### IPV6
+#### IPV6-eigrp
 
 > config
 
