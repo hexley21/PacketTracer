@@ -215,7 +215,7 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
     > eigrp router-id 1.1.1.1
 4. Advertise directly connected networks.
     - `network {ip_address} {wildcard}`
-5. Configure passive interfaces.
+5. Configure passive interfaces. (eigrp)
     - `passive-interface {interface}{port}`
 
 Examine neighbors
@@ -510,8 +510,8 @@ Enable Synchronous logging(con):
 
 |CIDR|SUBNET MASK    |WILDCARD MASK  |# OF IP ADDRESSES|# OF HOSTS   |
 |----|---------------|---------------|-----------------|-------------|
-|/31 |255.255.255.254|0.0.0.1        |2                |2*           |
 |/32 |255.255.255.255|0.0.0.0        |1                |1            |
+|/31 |255.255.255.254|0.0.0.1        |2                |2*           |
 |/30 |255.255.255.252|0.0.0.3        |4                |2            |
 |/29 |255.255.255.248|0.0.0.7        |8                |6            |
 |/28 |255.255.255.240|0.0.0.15       |16               |14           |
