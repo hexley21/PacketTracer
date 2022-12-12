@@ -291,6 +291,10 @@ EIGRP investigation commands
     - `router ospf {num}`
     - `passive-interface {outside-interface}{port}`
 
+Clear ospf processes on router
+
+- `clear ip ospf processess`
+
 Propagate the route in OSPF.
 
 - `ip route {ip} {mask} {interface}{port}`
@@ -304,7 +308,7 @@ Make every interface passive (ospf)
 Show ip routes learned through OSPF.
 
 - `show ip route ospf`
-- `show ip ospf neighbor`
+- `show ip ospf neighbor {interface}{port}`
 
 ### RIP
 
