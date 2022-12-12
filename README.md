@@ -230,15 +230,19 @@ Hello interval
 
 - `ip hello-interval eigrp {process-num} {interval}`
 
+Make every interface passive (eigrp)
+
+- `passive-interface default`
+
+Display routing protocol parameters
+
+- `show ip protocols`
+
 EIGRP investigation commands
 
 - `show ip eigrp topology`
 - `show ip eigrp interfaces`
 - `show ip eigrp neighbors`
-
-Display routing protocol parameters
-
-- `show ip protocols`
 
 #### IPV6-eigrp
 
@@ -292,6 +296,10 @@ Propagate the route in OSPF.
 - `ip route {ip} {mask} {interface}{port}`
 - `router ospf 1`
 - `default-information originate`
+
+Make every interface passive (ospf)
+
+- `passive-interface default`
 
 Show ip routes learned through OSPF.
 
