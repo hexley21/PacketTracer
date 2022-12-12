@@ -208,23 +208,19 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
 
 1. Enable the EIGRP routing process.
     - `router eigrp {process-num}`
-2. Disable automatic summarization.
-    - `no auto-summary`
-3. Assign a router ID.
+2. Assign a router ID.
     - `eigrp router-id {A.B.C.D}`
     > eigrp router-id 1.1.1.1
-4. Advertise directly connected networks.
+3. Advertise directly connected networks.
     - `network {ip_address} {wildcard}`
-5. Configure passive interfaces. (eigrp)
+    > add networks to router eigrp config which are connected to router direclty through interface ports
+4. Configure passive interfaces. (eigrp)
     - `passive-interface {interface}{port}`
+    > usually you should add ports which are connected to switches or devices
 
-Examine neighbors
+Disable automatic summarization.
 
-- `show ip eigrp neighbors`
-
-Display routing protocol parameters
-
-- `show ip protocols`
+- `no auto-summary`
 
 Propagate the default route in EIGRP. (eigrp)
 
@@ -234,20 +230,32 @@ Hello interval
 
 - `ip hello-interval eigrp {process-num} {interval}`
 
+EIGRP investigation commands
+
+- `show ip eigrp topology`
+- `show ip eigrp interfaces`
+- `show ip eigrp neighbors`
+
+Display routing protocol parameters
+
+- `show ip protocols`
+
 #### IPV6-eigrp
 
 > config
 
-1. Enable IPv6 routing.
+1. Enable IPv6 routing. (config)
     - `ipv6 unicast-routing`
 2. Enable EIGRP for IPv6 routing.
     - `ipv6 router eigrp {process-num}`
     - `no shutdown`
 3. Assign a router ID
     - `eigrp router-id {A.B.C.D}`
-4. Configure EIGRP for IPv6 on each interface
+4. Configure EIGRP for IPv6 on each interface (config)
     - `interface {interface} {port}`
     - `ipv6 eigrp {process-num}`
+5. Configure passive interfaces. (eigrp)
+    - `passive-interface {interface}{port}`
 
 #### Metric
 
