@@ -291,15 +291,19 @@ EIGRP investigation commands
     - `router ospf {num}`
     - `passive-interface {outside-interface}{port}`
 
-Clear ospf processes on router
+Change ospf priority on interface (config-if)
 
-- `clear ip ospf processess`
+- `ip ospf priority {priority-num}`
 
 Propagate the route in OSPF.
 
 - `ip route {ip} {mask} {interface}{port}`
 - `router ospf 1`
 - `default-information originate`
+
+Clear ospf processes on router
+
+- `clear ip ospf processess`
 
 Make every interface passive (ospf)
 
