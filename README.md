@@ -59,81 +59,112 @@ __Example:__
 
 Exec (exec)
 
-- `enable`
+    enable
 
 Configuration (config)
 
-- `enable`
-- `configure terminal`
+    enable
+    configure terminal
 
 Interface (config-if)
 
-- `enable`
-- `configure terminal`
-- `interface {interface}{port}`
+    enable
+    configure terminal
+    interface {interface}{port}
 
-    > choose interface range, for 1 and more interfaces
+> choose interface range, for 1 and more interfaces
 
-- `interface range {interface}{port_start} - {port_end}, {interface}{port_start} - {port_end}`
+    interface range {interface}{port_start} - {port_end}, {interface}{port_start} - {port_end}
 
 Vlan (config-vlan)
 
-- `enable`
-- `configure terminal`
-- `vlan {vlan_id}`
+    enable
+    configure terminal
+    vlan {vlan_id}
 
 Console Line (config-con)
 
-- `enable`
-- `configure terminal`
-- `line con 0`
+    enable
+    configure terminal
+    line con 0
 
 Console VTY (config-vty)
 
-- `enable`
-- `configure terminal`
-- `line vty 0 15`
+    enable
+    configure terminal
+    line vty 0 15
+
+Router EIGRP (eigrp)
+
+    enable
+    configure terminal
+    router eigrp {process_id}
+
+Ipv6 Router EIGRP (eigrp-ipv6)
+
+    enable
+    configure terminal
+    ipv6 router eigrp {process_id}
+
+Router OSPF (ospf)
+
+    enable
+    configure terminal
+    router ospf {process_id}
+
+Ipv6 Router OSPF (ospf-ipv6)
+
+    enable
+    configure terminal
+    router ospf {process_id}
 
 ## VLAN
 
 1. Create Vlan and assign name (config)
-    - `vlan {number}`
-    - `name {vlan-name}`
+
+        vlan {number}
+        name {vlan-name}
 
 2. Adding interfaces to Vlan
-    - `interface {interface}{port}`
-    - `switchport mode access`
-    - `switchport access vlan {number}`
+
+        interface {interface}{port}
+        switchport mode access
+        switchport access vlan {number}
 
 3. Activating "Trunk Mode" for external interfaces
-    - `interface {ext_interface}{port}`
-    - `switchport mode trunk`
+
+        interface {ext_interface}{port}
+        switchport mode trunk
+
     > Router - Switch connection interface
+
 4. Create subinterfaces on the router and point them
-    - `interface {interface}{port}.{vlan_num}`
-    - `encapsulation dot1Q {vlan_num}`
-    - `ip address {ip} {subnet_mask}`
+
+        interface {interface}{port}.{vlan_num}
+        encapsulation dot1Q {vlan_num}
+        ip address {ip} {subnet_mask}
+        no shut
+
     > IP of the router to which we will assign this interface
-    - `no shut`
 
 Add native VLAN to trunk port (config)
 
-- `inteface {exit_interface}{port}`
-- `switchport mode trunk`
-- `switchport trunk native vlan {number}`
+    inteface {exit_interface}{port}
+    switchport mode trunk
+    switchport trunk native vlan {number}
 
 Enable Dynamic trunking protocol {DTP} (config-if)
 
-- `switchport mode dynamic {desirable/auto}`
+    switchport mode dynamic {desirable/auto}
 
 Enable no negotiate (config-if)
 
-- `switchport nonegotiate`
+    switchport nonegotiate
 
 Enable voice in VLAN (config-if)
 
-- `mls qos trust cos`
-- `switchport voice vlan {number}`
+    mls qos trust cos
+    switchport voice vlan {number}
 
 ## SSH
 
@@ -142,27 +173,36 @@ Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed
 ### SSH Configuration (config)
 
 1. IP domain configuration
-    - `ip domain-name {your.link}`
+
+        ip domain-name {your.link}`
+
 2. RSA key pair generation
-    - `crypto key generate rsa`
+
+        crypto key generate rsa
+
 3. User authentication configuration
-    - `username {name} secret {password}`
+
+        username {name} secret {password}
+
 4. VTY lines configuration
-    - `line vty 0 15`
-    - `transport input ssh`
-    - `login local`
-    - `exit`
+
+        line vty 0 1
+        transport input 
+        login lo
+        exit
+
 5. Enable SSH ver. 2
-    - `ip ssh version 2`
-    - `exit`
+
+        ip ssh version 2
+        exit
 
 See SSH configuration (exec)
 
-- `show ip ssh`
+    show ip ssh
 
 Delete RSA key
 
-- `crypto key zeroize rsa`
+    crypto key zeroize rsa
 
 ## Routing
 
@@ -176,11 +216,11 @@ Delete RSA key
 
 ### Static Routing
 
-- `ip route {destination_ip} {destination_subnet} {route - [ip/interface]}`
+    ip route {destination_ip} {destination_subnet} {route - [ip/interface]}
 
-    Default route
+Default route
 
-- `ip route 0.0.0.0 0.0.0.0 {route - [ip/interface]}`
+    ip route 0.0.0.0 0.0.0.0 {route - [ip/interface]}
 
 #### Summary route calculation
 
@@ -208,89 +248,109 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
 > (config)
 
 1. Enable the EIGRP routing process.
-    - `router eigrp {process-num}`
+
+        router eigrp {process-num}
+
 2. Assign a router ID.
-    - `eigrp router-id {A.B.C.D}`
+
+        eigrp router-id {A.B.C.D}
     > eigrp router-id 1.1.1.1
+
 3. Advertise directly connected networks.
-    - `network {ip_address} {wildcard}`
+
+        network {ip_address} {wildcard}
     > add networks to router eigrp config which are connected to router direclty through interface ports
+
 4. Configure passive interfaces. (eigrp)
-    - `passive-interface {interface}{port}`
+
+        passive-interface {interface}{port}`
     > usually you should add ports which are connected to switches or devices
 
 Disable automatic summarization.
 
-- `no auto-summary`
+    no auto-summary
 
 Propagate the default route in EIGRP. (eigrp)
 
-- `redistribute static`
+    redistribute static
 
 Hello interval
 
-- `ip hello-interval eigrp {process-num} {interval}`
+    ip hello-interval eigrp {process-num} {interval}
 
 Make every interface passive (eigrp)
 
-- `passive-interface default`
+    passive-interface default
 
 Display routing protocol parameters
 
-- `show ip protocols`
+    show ip protocols
 
 EIGRP investigation commands
 
-- `show ip eigrp topology`
-- `show ip eigrp interfaces`
-- `show ip eigrp neighbors`
+    show ip eigrp topology
+    show ip eigrp interfaces
+    show ip eigrp neighbors
 
 #### IPV6-eigrp
 
 > config
 
 1. Enable IPv6 routing. (config)
-    - `ipv6 unicast-routing`
+
+        ipv6 unicast-routing
+
 2. Enable EIGRP for IPv6 routing.
-    - `ipv6 router eigrp {process-num}`
-    - `no shutdown`
+
+        ipv6 router eigrp {process-num}
+        no shutdown
+
 3. Assign a router ID
-    - `eigrp router-id {A.B.C.D}`
+
+        eigrp router-id {A.B.C.D}
+
 4. Configure EIGRP for IPv6 on each interface (config)
-    - `interface {interface} {port}`
-    - `ipv6 eigrp {process-num}`
-5. Configure passive interfaces. (eigrp)
-    - `passive-interface {interface}{port}`
+
+        interface {interface} {port}
+        ipv6 eigrp {process-num}
+
+5. Configure passive interfaces. (ipv6-eigrp)
+
+        passive-interface {interface}{port}
 
 #### Metric
 
-1. `router eigrp 1`
-2. `metric weights tos`
-3. `metric weights 0 0 0 0 0 0`
+    router eigrp 1
+    metric weights tos
+    metric weights 0 0 0 0 0 0
 
 > In case ISP has static routing, write these commands to other routers
 
-1. `router eigrp {number}`
-2. `redistribute static`
+    router eigrp {number}`
+    redistribute static`
 
 ### OSPF
 
 > Router (conf)
 
 1. Configure router IDs. (config)
-    - `route ospf {num}`
-    - `router-id {process_id}`
+
+        route ospf {num}
+        router-id {process_id}
+
 2. Configure Networks for OSPF Routing
-    - Configure networks using wildcard masks. (config-router)
-    - `network {ip_address} {wildcard_mask} area {number}`
+    > Configure networks using wildcard masks. (config-router)
+
+        network {ip_address} {wildcard_mask} area {number}
 
     Or Configure OSPF routing on router interfaces. (config)
 
-    - `interface {interface}{port}`
-    - `ip ospf {process-id} area {area-id}`
+        interface {interface}{port}
+        ip ospf {process-id} area {area-id}
+
 3. Configure Passive Interfaces (config)
-    - `router ospf {num}`
-    - `passive-interface {outside-interface}{port}`
+        router ospf {num}
+        passive-interface {outside-interface}{port}
 
 #### DR - BDR
 
@@ -306,35 +366,38 @@ DROTH is given automatically if neither DR nor BDR is obtained\
 
 1. Assign highest priority to desired router port
 
-    - `interface {interface}{port}`
-    - `ip ospf priority {priority-num}`
+        interface {interface1}{port1}
+        ip ospf priority {priority-num}
 
 2. Assign second highest priority to desired router port
 
+        interface {interface2}{port2}
+        ip ospf priority {priority-num}
+
 3. Clear every neighbor router processes in order to start election (exec)
 
-    - `clear ip ospf processess`
+        clear ip ospf processess
 
 4. Wait and check each router's ospf interface brief and neighbors
 
-    - `show ip ospf neighbor`
-    - `show ip ospf interface brief`
+        show ip ospf neighbor
+        show ip ospf interface brief
 
 Propagate the route in OSPF.
 
-- `ip route {ip} {mask} {interface}{port}`
-- `router ospf 1`
-- `default-information originate`
+    ip route {ip} {mask} {interface}{port}
+    router ospf 1
+    default-information originate
 
 Make every interface passive (ospf)
 
-- `passive-interface default`
+    passive-interface default
 
 Show ip routes learned through OSPF.
 
-- `show ip route ospf`
-- `show ip ospf neighbor {interface}{port}`
-- `show ip ospf interface {interface}{port`
+    show ip route ospf
+    show ip ospf neighbor {interface}{port}
+    show ip ospf interface {interface}{port}
 
 ### RIP
 
@@ -342,24 +405,25 @@ Show ip routes learned through OSPF.
 >
 > Write these commands to each router and network
 
-1. `route rip`
-2. `version 2`
-3. `network {neighbor_router_ip_address}`
+    route rip
+    version 2
+    network {neighbor_router_ip_address}
 
 ## DHCP
 
 > Router (conf)
 
-1. `ip dhcp pool {name}`
-2. `default-router {target_ip}`
-3. `network {ip-start-point} {subnet-mask}`
-    > network 192.168.100.0 255.255.255.0
-4. `dns-server {dns_address}`
-    > dns-server 8.8.8.8
+    ip dhcp pool {name}
+    default-router {target_ip}
+    network {ip-start-point} {subnet-mask}
+    dns-server {dns_address}`
+
+> network is usually like - ___192.168.100.0 255.255.255.0___\
+> dns-server is usually like - ___8.8.8.8___
 
 Exclude IPs
 
-1. `ip dhcp excluded -address {ip-start-point} {ip-end-point}`
+    ip dhcp excluded -address {ip-start-point} {ip-end-point}
 
 Server
 
@@ -388,15 +452,15 @@ Server
 
 1. Enable ipv6 routing (config)
 
-    - `ipv6 unicast-routing`
+        ipv6 unicast-routing
 
 2. Set ipv6 address
 
-    - `ipv6 address {address}`
+        ipv6 address {address}
 
 3. Set link-local to ipv6
 
-    - `ipv6 address {address} link-local`
+        ipv6 address {address} link-local
 
 ## Port Security
 
@@ -404,16 +468,17 @@ Configure port-security(config-if)
 
 Give mac address to port
 
-- `switchport port-security mac-address {address/sticky}`
-    > sticky gives mac-addresses dynamicly
+    switchport port-security mac-address {address/sticky}
+
+> sticky gives mac-addresses dynamicly
 
 Restrict maximum amount of mac addresses given
 
-- `switchport port-security maximum {0-15}`
+    switchport port-security maximum {0-15}
 
 Add action on security violation
 
-- `switchport port-security violation {shutdown/restrict/protect}`
+    switchport port-security violation {shutdown/restrict/protect}
 
 ## Device commands
 
@@ -421,97 +486,95 @@ Add action on security violation
 
 Show all VLANs (exec)
 
-- `show vlan brief`
+    show vlan brief
 
 Show all interfaces (exec)
 
-- `show ip interface brief`
+    show ip interface brief
 
 Verify ip routes (exec)
 
-- `show ip route`
+    show ip route
 
-    or
+Verify ipv6 routes (exec)
 
-- `show ipv6 route`
+    show ipv6 route
 
 ### Basic configuration
 
 Show running config (exec)
 
-- `show running-config`
+    show running-config
 
 Save running config to startup config (exec)
 
-- `copy running-config startup-config`
+    copy running-config startup-config
 
 > Destination filename [startup-config]? [Enter]
 
 Erase startup config (exec)
 
-- `erase startup-config`
-- `reload`
+    erase startup-config
+    reload
 
 Show flash memory
 
-- `show flash`
+    show flash
 
 Delete file
 
-- `delete {file}`
+    delete {file}
 
 Show mac address table (exec)
 
-- `show mac address-table (dynamic/static/NONE)`
+    show mac address-table (dynamic/static/NONE)
 
 Display system hardware and software status (exec)
 
-- `show version`
+    show version
 
 Display history of command entered (exec)
 
-- `show history`
+    show history
 
 Clear dynamic mac address table (exec)
 
-- `clear mac address-table dynamic`
+    clear mac address-table dynamic
 
 Hostname (config)
 
-- `hostname {name}`
+    hostname {name}
 
 Enable secret (config)
 
-- `enable secret {password}`
-    > Prefered way
+    enable secret {password}
 
 Enable password (config)
 
-- `enable password {password}`
+    enable password {password}
 
 Enable Password-Encryption (config)
 
-- `service password-encryption`
+    service password-encryption
 
 Set password min-length (config)
 
-- `security passwords min-length`
+    security passwords min-length
 
 Banner (config)
 
-- `banner motd #`
+    banner motd #
+    {message}#
 
-    > Enter TEXT message.  End with the character #.
-
-- `{message}#`
+> Enter TEXT message.  End with the character #.
 
 Description (config-if)
 
-- `description {text}`
+    description {text}
 
 Restrict unwanted DNS lookup (config)
 
-- `no ip domain-lookup`
+    no ip domain-lookup
 
 ### Switch
 
@@ -519,38 +582,40 @@ Restrict unwanted DNS lookup (config)
 
 Block line logins after unsuccessful attempts (config)
 
-- `login block-for {seconds} attempts {num_of_tries} within {second}`
+    login block-for {seconds} attempts {num_of_tries} within {second}
 
 Set clock (config)
 
-- `clock set 15:20:00 12 Nov 2020`
+    clock set 15:20:00 12 Nov 2020
 
 Enable Duplex (config-if)
 
 > Full-duplex communication increases bandwidth efficiency by allowing both ends of a connection to transmit and receive data simultaneously.
 
-- `duplex full`
-- `speed {val}` (usually: 100)
+    duplex full
+    speed {value}
+
+> val is usually - ___100___
 
 Auto-MDIX (config-if)
 
 > With auto-MDIX enabled, either type of cable can be used to connect to other devices, and the interface automatically adjusts to communicate successfully.
 
-- `mdix auto`
+    mdix auto
 
 See mdix state
 
-- `show controllers ethernet-controller {interface}{port} phy | include MDIX`
+    show controllers ethernet-controller {interface}{port} phy | include MDIX
 
 ### Lines (vty/con)
 
 Disconect after inactivity
 
-- `exec-timeout {minutes} {seconds}`
+    exec-timeout {minutes} {seconds}
 
 Enable Synchronous logging(con):
 
-- `logging synchronous`
+    logging synchronous
 
 ## Subnet Masks
 
