@@ -18,6 +18,7 @@
       - [IPV6](#ipv6-eigrp)
       - [Metric](#metric)
     - [OSPF](#ospf)
+      - [DR - BDR](#dr---bdr)
     - [RIP](#rip)
   - [DHCP](#dhcp)
   - [IPv6](#ipv6)
@@ -291,19 +292,39 @@ EIGRP investigation commands
     - `router ospf {num}`
     - `passive-interface {outside-interface}{port}`
 
-Change ospf priority on interface (config-if)
+#### DR - BDR
 
-- `ip ospf priority {priority-num}`
+__DR__ - Designated Router\
+__BDR__ - Backup Designated Router\
+__DROTH__ - Designated Router OTHer\
+
+DR is elected in ospf network by highest priority.\
+BDR is elected in ospf network by second highest priority.\
+DROTH is given automatically if neither DR nor BDR is obtained\
+
+> To assign DR or BDR to specific routers
+
+1. Assign highest priority to desired router port
+
+    - `interface {interface}{port}`
+    - `ip ospf priority {priority-num}`
+
+2. Assign second highest priority to desired router port
+
+3. Clear every neighbor router processes in order to start election (exec)
+
+    - `clear ip ospf processess`
+
+4. Wait and check each router's ospf interface brief and neighbors
+
+    - `show ip ospf neighbor`
+    - `show ip ospf interface brief`
 
 Propagate the route in OSPF.
 
 - `ip route {ip} {mask} {interface}{port}`
 - `router ospf 1`
 - `default-information originate`
-
-Clear ospf processes on router
-
-- `clear ip ospf processess`
 
 Make every interface passive (ospf)
 
@@ -313,6 +334,7 @@ Show ip routes learned through OSPF.
 
 - `show ip route ospf`
 - `show ip ospf neighbor {interface}{port}`
+- `show ip ospf interface {interface}{port`
 
 ### RIP
 
