@@ -94,6 +94,30 @@ Console VTY (config-vty)
     configure terminal
     line vty 0 15
 
+Router EIGRP (eigrp)
+
+    enable
+    configure terminal
+    router eigrp {process_id}
+
+Ipv6 Router EIGRP (eigrp-ipv6)
+
+    enable
+    configure terminal
+    ipv6 router eigrp {process_id}
+
+Router OSPF (ospf)
+
+    enable
+    configure terminal
+    router ospf {process_id}
+
+Ipv6 Router OSPF (ospf-ipv6)
+
+    enable
+    configure terminal
+    router ospf {process_id}
+
 ## VLAN
 
 1. Create Vlan and assign name (config)
