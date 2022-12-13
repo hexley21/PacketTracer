@@ -314,7 +314,7 @@ EIGRP investigation commands
         interface {interface} {port}
         ipv6 eigrp {process-num}
 
-5. Configure passive interfaces. (eigrp)
+5. Configure passive interfaces. (ipv6-eigrp)
 
         passive-interface {interface}{port}
 
