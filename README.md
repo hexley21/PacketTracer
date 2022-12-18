@@ -18,6 +18,7 @@
       - [IPV6](#ipv6-eigrp)
       - [Metric](#metric)
     - [OSPF](#ospf)
+      - [IPV6](#ipv6-ospfv3)
       - [DR - BDR](#dr---bdr)
     - [RIP](#rip)
   - [DHCP](#dhcp)
@@ -351,6 +352,31 @@ EIGRP investigation commands
 3. Configure Passive Interfaces (config)
         router ospf {num}
         passive-interface {outside-interface}{port}
+
+#### IPv6-OSPFv3
+
+> config
+
+1. Enable IPv6 routing. (config)
+
+        ipv6 unicast-routing
+
+2. Enable OSPF for IPv6 routing.
+
+        ipv6 router ospf {process-num}
+
+3. Assign a router ID
+
+        router-id {A.B.C.D}
+
+4. Configure EIGRP for IPv6 on each interface (config)
+
+        interface {interface} {port}
+        ipv6 ospf {process-num} area {area}
+
+5. Configure passive interfaces. (ipv6-eigrp)
+
+        passive-interface {interface}{port}
 
 #### DR - BDR
 
