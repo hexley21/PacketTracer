@@ -357,6 +357,12 @@ Propagate the default route in ospf. (ospf)
 
     default-information originate
 
+Hello and Dead intervals (config-if)
+
+    ip ospf hello-interval {interval}
+
+    ip ospf dead-interval {interval}
+
 #### IPv6-OSPFv3
 
 > config
