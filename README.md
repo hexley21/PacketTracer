@@ -353,6 +353,10 @@ EIGRP investigation commands
         router ospf {num}
         passive-interface {outside-interface}{port}
 
+Propagate the default route in ospf. (ospf)
+
+    default-information originate
+
 #### IPv6-OSPFv3
 
 > config
