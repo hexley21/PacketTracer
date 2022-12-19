@@ -188,8 +188,8 @@ Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed
 4. VTY lines configuration
 
         line vty 0 1
-        transport input 
-        login lo
+        transport input ssh
+        login local
         exit
 
 5. Enable SSH ver. 2
@@ -356,6 +356,10 @@ EIGRP investigation commands
 Propagate the default route in ospf. (ospf)
 
     default-information originate
+
+Summarization between areas. (ospf)
+
+    area {area-id} range {ip} {mask}
 
 Hello and Dead intervals (config-if)
 
