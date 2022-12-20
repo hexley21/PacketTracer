@@ -486,7 +486,7 @@ Show ip routes learned through OSPF.
 
 2. Configure a pool of address for NAT. (config)
 
-        ip nat pool {any_pool_name} {start-ip} {end-ip} netmask {network-mask}
+        ip nat pool {any_pool_name} {nat-start-ip} {nat-end-ip} netmask {network-mask}
 
 3. Associate ACL with the NAT pool. (config)
 
@@ -510,7 +510,7 @@ Show ip routes learned through OSPF.
 
 2. Configure a pool of address for NAT. (config)
 
-        ip nat pool {any_pool_name} {start-ip} {end-ip} netmask {network-mask}
+        ip nat pool {any_pool_name} {nat-start-ip} {nat-end-ip} netmask {network-mask}
 
 3. Associate ACL with the NAT pool and allow addresses to be reused. (config)
 
