@@ -23,6 +23,7 @@
     - [RIP](#rip)
   - [NAT](#nat)
     - [Static](#static-nat)
+    - [Dynamic](#dynamic-nat)
   - [DHCP](#dhcp)
   - [IPv6](#ipv6)
     - [Configure IPv6](#configure-ipv6)
@@ -471,6 +472,30 @@ Show ip routes learned through OSPF.
 3. Configure outside interfaces.
 
     > interfaces where your router reaches outside networks. Usually s0/0/0
+
+        interface {interface}{port}
+        ip nat outside
+
+### Dynamic NAT
+
+1. Configure traffic that will be permitted. (config)
+
+        access-list {acl-num} permit {inside-network-ip} {wildcard-mask}
+
+2. Configure a pool of address for NAT. (config)
+
+        ip nat pool {any_pool_name} {start-ip} {end-ip} netmask {network-mask}
+
+3. Associate ACL 1 with the NAT pool. (config)
+
+        ip nat inside source list {acl-num} pool {your-pool-name}
+
+4. Configure inside interfaces.
+
+        interface {interface}{port}
+        ip nat inside
+
+5. Configure outside interfaces.
 
         interface {interface}{port}
         ip nat outside
