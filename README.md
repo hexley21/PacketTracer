@@ -21,6 +21,8 @@
       - [IPV6](#ipv6-ospfv3)
       - [DR - BDR](#dr---bdr)
     - [RIP](#rip)
+  - [NAT](#nat)
+    - [Static](#static-nat)
   - [DHCP](#dhcp)
   - [IPv6](#ipv6)
     - [Configure IPv6](#configure-ipv6)
@@ -448,6 +450,36 @@ Show ip routes learned through OSPF.
     route rip
     version 2
     network {neighbor_router_ip_address}
+
+## NAT
+
+### Static NAT
+
+1. Configure static NAT statements.
+
+    > inside ips are like 192.168.x.x / 172.16.x.x / 10.x.x.x \
+    > outside ips can be anything.
+
+        ip nat inside source static {inside-ip} {outside-ip}
+
+2. Configure inside interfaces.
+    > interface where your user is connected. Usually g0/0
+
+        interface {interface}{port}
+        ip nat inside
+
+3. Configure outside interfaces.
+
+    > interfaces where your router reaches outside networks. Usually s0/0/0
+
+        interface {interface}{port}
+        ip nat outside
+
+NAT investigation commands
+
+    show running-config | include nat
+    show ip nat translations
+    show ip nat statistics
 
 ## DHCP
 
