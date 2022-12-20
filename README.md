@@ -9,6 +9,9 @@
     - [Before moving on](#before-moving-on)
       - [Modes](#modes)
   - [VLAN](#vlan)
+    - [Router on stick](#router-on-stick)
+    - [Layer 3 switch](#layer-3-switch)
+  - [VLAN](#vlan)
   - [SSH](#ssh)
     - [SSH Configuration (config)](#ssh-configuration-config)
   - [Routing](#routing)
@@ -126,6 +129,8 @@ Ipv6 Router OSPF (ospf-ipv6)
 
 ## VLAN
 
+### Router on stick
+
 1. Create Vlan and assign name (config)
 
         vlan {number}
@@ -152,6 +157,28 @@ Ipv6 Router OSPF (ospf-ipv6)
         no shut
 
     > IP of the router to which we will assign this interface
+
+### Layer 3 Switch
+
+1. Create VLANS
+
+        vlan {vlan-num}
+        name {vlan-name}
+
+2. Configure Switch Virtual Interfaces on L3 Switch (config)
+
+        interface vlan {vlan-num}
+        ip address {ip-address} {mask}
+
+3. Configure Trunking on L3 Switch.
+
+        interface {outside-interface} {port}
+        switchport mode trunk
+        switchport trunk native vlan {native-vlan-num}
+
+4. Enable routing.
+
+        ip rouing
 
 Add native VLAN to trunk port (config)
 
