@@ -25,6 +25,7 @@
     - [Static](#static-nat)
     - [Dynamic](#dynamic-nat)
     - [PAT](#pat)
+  - [ACL](#acl)
   - [DHCP](#dhcp)
   - [IPv6](#ipv6)
     - [Configure IPv6](#configure-ipv6)
@@ -535,6 +536,13 @@ NAT investigation commands
     show running-config | include nat
     show ip nat translations
     show ip nat statistics
+
+## ACL
+
+Permit ip addresses in ACL. (config)
+
+    ip access-list standard {acl-name}
+    permit {ip} {wildcard-mask}
 
 ## DHCP
 
