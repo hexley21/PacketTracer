@@ -553,6 +553,11 @@ Show ip routes learned through OSPF.
         interface {interface}{port}
         ip nat outside
 
+- __Permit ip addressed other way__ (might be needed)
+
+        ip access-list standard {acl-name}
+        permit {network-ip} {wildcard-mask}
+
 - __Step 3 alternative__\
 Associate ACL with the NAT interface and allow addresses to be reused.
 
