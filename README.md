@@ -24,6 +24,7 @@
   - [NAT](#nat)
     - [Static](#static-nat)
     - [Dynamic](#dynamic-nat)
+    - [PAT](#pat)
   - [DHCP](#dhcp)
   - [IPv6](#ipv6)
     - [Configure IPv6](#configure-ipv6)
@@ -190,7 +191,7 @@ Secure Shell (SSH) is a protocol that provides remote Secure (encrypted) managed
 
 4. VTY lines configuration
 
-        line vty 0 1
+        line vty 0 15
         transport input ssh
         login local
         exit
@@ -486,7 +487,7 @@ Show ip routes learned through OSPF.
 
         ip nat pool {any_pool_name} {start-ip} {end-ip} netmask {network-mask}
 
-3. Associate ACL 1 with the NAT pool. (config)
+3. Associate ACL with the NAT pool. (config)
 
         ip nat inside source list {acl-num} pool {your-pool-name}
 
@@ -499,6 +500,35 @@ Show ip routes learned through OSPF.
 
         interface {interface}{port}
         ip nat outside
+
+### PAT
+
+1. Configure traffic that will be permitted. (config)
+
+        access-list {acl-num} permit {inside-network-ip} {wildcard-mask}
+
+2. Configure a pool of address for NAT. (config)
+
+        ip nat pool {any_pool_name} {start-ip} {end-ip} netmask {network-mask}
+
+3. Associate ACL with the NAT pool and allow addresses to be reused. (config)
+
+        ip nat inside source list {acl-num} pool {your-pool-name} overload
+
+4. Configure inside interfaces.
+
+        interface {interface}{port}
+        ip nat inside
+
+5. Configure outside interfaces.
+
+        interface {interface}{port}
+        ip nat outside
+
+- __Step 3 alternative__\
+Associate ACL with the NAT interface and allow addresses to be reused.
+
+        ip nat inside source list {acl-num} {outside-interface-port} overload
 
 NAT investigation commands
 
