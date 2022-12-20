@@ -531,7 +531,7 @@ Associate ACL with the NAT interface and allow addresses to be reused.
 
         ip nat inside source list {acl-num} {outside-interface-port} overload
 
-NAT investigation commands
+NAT investigation commands. (exec)
 
     show running-config | include nat
     show ip nat translations
@@ -543,6 +543,10 @@ Permit ip addresses in ACL. (config)
 
     ip access-list standard {acl-name}
     permit {ip} {wildcard-mask}
+
+ACL investigation commands. (exec)
+
+    show ip access-lists
 
 ## DHCP
 
