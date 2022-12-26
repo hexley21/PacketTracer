@@ -561,7 +561,7 @@ Show ip routes learned through OSPF.
 - __Step 3 alternative__\
 Associate ACL with the NAT interface and allow addresses to be reused.
 
-        ip nat inside source list {acl-num} {outside-interface-port} overload
+        ip nat inside source list {acl-num} interface {outside-interface-port} overload
 
 NAT investigation commands. (exec)
 
@@ -571,10 +571,26 @@ NAT investigation commands. (exec)
 
 ## ACL
 
-Permit ip addresses in ACL. (config)
+Create standard ACL. (config)
+
+    ip access-list standard {word | 1-99}
+
+Create extended ACL. (config)
+
+    ip access-list extended {word | 100-199}
+
+Add record to standard ACL. (config)
 
     ip access-list standard {acl-name}
     permit {ip} {wildcard-mask}
+
+Add record to standard ACL other way. (config)
+
+    access-list {word | 1-99} {permit|deny} {ip} {wildcard-mask}
+
+Add record of a host to standard ACL. (config)
+
+    access-list {word | 1-99} {permit|deny} host {ip}
 
 ACL investigation commands. (exec)
 
