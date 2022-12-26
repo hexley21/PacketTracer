@@ -581,16 +581,21 @@ Create extended ACL. (config)
 
 Add record to standard ACL. (config)
 
-    ip access-list standard {acl-name}
-    permit {ip} {wildcard-mask}
+    ip access-list standard {word|1-99}
+    [permit|deny] {ip} {wildcard-mask}
 
 Add record to standard ACL other way. (config)
 
-    access-list {word | 1-99} [permit|deny] {ip} {wildcard-mask}
+    access-list {1-99} [permit|deny] {ip} {wildcard-mask}
 
-Add record of a host to standard ACL. (config)
+Add ip record to extended ACL. (config)
 
-    access-list {word | 1-99} [permit|deny] host {ip}
+    ip access-list extended {acl-name|100-199}
+    [permit|deny] {source-ip} {source-wildcard} {dest-ip} {dest-wildcard}
+
+Add ip record to extended ACL other way. (config)
+
+    access-list {100-199} [permit|deny] {source-ip} {source-wildcard} {dest-ip} {dest-wildcard}
 
 Use ACL inside interface. (config-if)
 
