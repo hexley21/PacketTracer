@@ -586,11 +586,19 @@ Add record to standard ACL. (config)
 
 Add record to standard ACL other way. (config)
 
-    access-list {word | 1-99} {permit|deny} {ip} {wildcard-mask}
+    access-list {word | 1-99} [permit|deny] {ip} {wildcard-mask}
 
 Add record of a host to standard ACL. (config)
 
-    access-list {word | 1-99} {permit|deny} host {ip}
+    access-list {word | 1-99} [permit|deny] host {ip}
+
+Use ACL inside interface. (config-if)
+
+    ip access-group {1-199 | acl-name} [in|out]
+
+Use ACL inside line. (config-line)
+
+    ip access-class {acl-name} [in|out]
 
 ACL investigation commands. (exec)
 
