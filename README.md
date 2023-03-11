@@ -45,7 +45,7 @@
 
 ## About
 
-This is a short summary of commands and knowledge gathered from cisco's netcad courses and from Network Administration books:
+This is a short summary of every kind of stuff from cisco's netacad courses and from Network Administration books:
 
 [Network Administration 1](https://github.com/hexley21/PacketTracer/blob/e3264c111e7922d33de1a16441ba3edf7715597a/%5BNetwork%20Administration%201%5D%20Routing%20and%20switching%20in%20networks.pdf)
 
@@ -53,16 +53,16 @@ This is a short summary of commands and knowledge gathered from cisco's netcad c
 
 ### Before moving on
 
-Before moving on, read this paragraph, this will help you to understand this manual better.
+Glance through [Modes](#modes) paragraph, it will help you to understand this guide better.
 
 #### Modes
 
-Each command has to be launched in specific "scope", in this pagragraph, you will see all these modes and commands to enable them.
+Each command has to be launched in specific scope, so here are every command used in this guide to enter into specific scope.
 
-__Example:__
+**Example:**
 > Show all VLANs (exec)
 >
-> _(means that "show all vlans" command can be launched only from `exec` mode)_
+> *(means that "show all vlans" command can be launched only from `exec` mode)*
 >
 > you have to type `enable` in the console
 
@@ -156,7 +156,7 @@ Ipv6 Router OSPF (ospf-ipv6)
         ip address {ip} {subnet_mask}
         no shut
 
-    > IP of the router to which we will assign this interface
+    > IP of the router that we want to assign this interface to
 
 ### Layer 3 Switch
 
@@ -264,17 +264,17 @@ Example:
 `172.16`.1.0 / 25\
 `172.16`.0.0 / 24
 
-all these adresses have `172.16` in common
+each adress include `172.16`
 
 `172.16.000000`10.00000000\
 `172.16.000000`01.10000000\
 `172.16.000000`01.00000000\
 `172.16.000000`00.00000000
 
-all these adresses share `172.16.000000`, so we get ip summary of:\
-`172.16.0.0 / 22`
+so to calculate the mask, we need to count numbers that adresses do not share.
+in this case, after `172.16.000000` 10 numbers are coming, subnet mask is 32 - 10 and we get ip summary of: `172.16.0.0 / 22`
 
-which gives us a range of `172.16.0.0` to `172.16.3.255`
+we get ip adress range from `172.16.0.0` to `172.16.3.255`
 
 ### EIGRP
 
@@ -292,12 +292,12 @@ which gives us a range of `172.16.0.0` to `172.16.3.255`
 3. Advertise directly connected networks.
 
         network {ip_address} {wildcard}
-    > add networks to router eigrp config which are connected to router direclty through interface ports
+    > add networks to router eigrp config, that are directly connected to router through interface ports
 
 4. Configure passive interfaces. (eigrp)
 
         passive-interface {interface}{port}`
-    > usually you should add ports which are connected to switches or devices
+    > usually you should add ports, which are connected to switches or devices
 
 Disable automatic summarization.
 
@@ -357,7 +357,7 @@ EIGRP investigation commands
     metric weights tos
     metric weights 0 0 0 0 0 0
 
-> In case ISP has static routing, write these commands to other routers
+> in case ISP has static routing, run these commands to other routers
 
     router eigrp {number}`
     redistribute static`
@@ -372,7 +372,7 @@ EIGRP investigation commands
         router-id {process_id}
 
 2. Configure Networks for OSPF Routing
-    > Configure networks using wildcard masks. (config-router)
+    > Configure networks with wildcard masks. (config-router)
 
         network {ip_address} {wildcard_mask} area {number}
 
@@ -426,15 +426,15 @@ Hello and Dead intervals (config-if)
 
 #### DR - BDR
 
-__DR__ - Designated Router\
-__BDR__ - Backup Designated Router\
-__DROTH__ - Designated Router OTHer\
+**DR** - Designated Router\
+**BDR** - Backup Designated Router\
+**DROTH** - Designated Router OTHer\
 
 DR is elected in ospf network by highest priority.\
 BDR is elected in ospf network by second highest priority.\
-DROTH is given automatically if neither DR nor BDR is obtained\
+DROTH is elected automatically if neither DR nor BDR is obtained\
 
-> To assign DR or BDR to specific routers
+> in order to assign DR or BDR to specific routers
 
 1. Assign highest priority to desired router port
 
@@ -475,7 +475,7 @@ Show ip routes learned through OSPF.
 
 > Router (conf)
 >
-> Write these commands to each router and network
+> Run these commands to each router and network
 
     route rip
     version 2
@@ -487,20 +487,20 @@ Show ip routes learned through OSPF.
 
 1. Configure static NAT statements.
 
-    > inside ips are like 192.168.x.x / 172.16.x.x / 10.x.x.x \
-    > outside ips can be anything.
+    > *inside* ips are like 192.168.x.x / 172.16.x.x / 10.x.x.x \
+    > *outside* ips can be anything.
 
         ip nat inside source static {inside-ip} {outside-ip}
 
 2. Configure inside interfaces.
-    > interface where your user is connected. Usually g0/0
+    > interface where user is connected to. Usually g0/0
 
         interface {interface}{port}
         ip nat inside
 
 3. Configure outside interfaces.
 
-    > interfaces where your router reaches outside networks. Usually s0/0/0
+    > interfaces where router reaches outside networks. Usually s0/0/0
 
         interface {interface}{port}
         ip nat outside
@@ -553,12 +553,12 @@ Show ip routes learned through OSPF.
         interface {interface}{port}
         ip nat outside
 
-- __Permit ip addressed other way__ (might be needed)
+- **Permit ip addressed other way** (might be needed)
 
         ip access-list standard {acl-name}
         permit {network-ip} {wildcard-mask}
 
-- __Step 3 alternative__\
+- **Step 3 alternative**\
 Associate ACL with the NAT interface and allow addresses to be reused.
 
         ip nat inside source list {acl-num} interface {outside-interface-port} overload
@@ -618,8 +618,8 @@ ACL investigation commands. (exec)
     network {ip-start-point} {subnet-mask}
     dns-server {dns_address}`
 
-> network is usually like - ___192.168.100.0 255.255.255.0___\
-> dns-server is usually like - ___8.8.8.8___
+> network is usually like - ***192.168.100.0 255.255.255.0***\
+> dns-server is usually like - ***8.8.8.8***
 
 Exclude IPs
 
@@ -639,9 +639,9 @@ Server
 > subnet mask: `{subnet}`
 > maximum numbers of Users: `{0 - 255}`
 >
-> __Save__
+> **Save**
 >
-> for each dhcp (if exists), write these commands in router
+> run these commands in router for each dhcp (if exists)
 >
 > - `interface {interface} {port}`
 > - `ip helper-address {dhcp_server_ip`
@@ -670,9 +670,9 @@ Give mac address to port
 
     switchport port-security mac-address {address/sticky}
 
-> sticky gives mac-addresses dynamicly
+> sticky assigns mac-addresses dynamicly
 
-Restrict maximum amount of mac addresses given
+Restrict maximum amount of given mac addresses
 
     switchport port-security maximum {0-15}
 
@@ -790,16 +790,16 @@ Set clock (config)
 
 Enable Duplex (config-if)
 
-> Full-duplex communication increases bandwidth efficiency by allowing both ends of a connection to transmit and receive data simultaneously.
+> Full-duplex communication increases bandwidth efficiency by allowing both ends of a connection to transmit and receive data simultaneously
 
     duplex full
     speed {value}
 
-> val is usually - ___100___
+> val is usually - ***100***
 
 Auto-MDIX (config-if)
 
-> With auto-MDIX enabled, either type of cable can be used to connect to other devices, and the interface automatically adjusts to communicate successfully.
+> With auto-MDIX enabled, either type of cable can be used to connect to other devices, and the interface automatically adjusts to communicate successfully
 
     mdix auto
 
